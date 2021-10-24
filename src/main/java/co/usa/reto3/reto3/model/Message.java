@@ -20,7 +20,7 @@ public class Message implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "audienceId")
-    @JsonIgnoreProperties("messages")
+    @JsonIgnoreProperties({"messages","reservations"})
     private Audience audience;
 
     @ManyToOne
