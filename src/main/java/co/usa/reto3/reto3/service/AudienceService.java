@@ -34,4 +34,40 @@ public class AudienceService {
             }
         }
     }
+
+    public boolean deleteAudience(int id) {
+        Optional<Audience> queryAudience = audienceRepository.getAudience(id);
+        if (!queryAudience.isEmpty()) {
+            audienceRepository.delete(queryAudience.get());
+            return true;
+        }
+        return false;
+    }
+
+    public Audience update(Audience upAudience) {
+        if (upAudience.getId() != null) {
+            Optional<Audience> queryAudience = audienceRepository.getAudience(upAudience.getId());
+            if (!queryAudience.isEmpty()) {
+
+                if (upAudience.getName() != null) {
+                    queryAudience.get().setName(upAudience.getName());
+                }
+
+                if (upAudience.getOwner() != null) {
+                    queryAudience.get().setOwner(upAudience.getOwner());
+                }
+
+                if (upAudience.getCapacity() != null) {
+                    queryAudience.get().setCapacity(upAudience.getCapacity());
+                }
+
+                if (upAudience.getDescription() != null) {
+                    queryAudience.get().setDescription(upAudience.getDescription());
+                }
+
+                return audienceRepository.save(queryAudience.get());
+            }
+        }
+        return upAudience;
+    }
 }

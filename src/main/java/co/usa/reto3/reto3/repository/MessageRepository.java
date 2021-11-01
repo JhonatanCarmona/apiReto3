@@ -14,7 +14,6 @@ public class MessageRepository {
     @Autowired
     private MessageCrudRepository messageCrudRepository;
 
-
     public List<Message> getAll() {
         return (List<Message>) messageCrudRepository.findAll();
     }
@@ -26,4 +25,9 @@ public class MessageRepository {
     public Message save(Message newMessage) {
         return messageCrudRepository.save(newMessage);
     }
+
+    public void delete(Message message) {
+        messageCrudRepository.delete(message);
+    }
+
 }

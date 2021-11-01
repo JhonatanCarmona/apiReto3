@@ -14,7 +14,6 @@ public class ClientRepository {
     @Autowired
     private ClientCrudRepository clientCrudRepository;
 
-
     public List<Client> getAll() {
         return (List<Client>) clientCrudRepository.findAll();
     }
@@ -26,4 +25,9 @@ public class ClientRepository {
     public Client save(Client newClient) {
         return clientCrudRepository.save(newClient);
     }
+
+    public void delete(Client client) {
+        clientCrudRepository.delete(client);
+    }
+
 }

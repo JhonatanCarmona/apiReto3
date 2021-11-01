@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script src="js/addScript.js"></script>
+    <script src="js/enumarateScript.js"></script>
+    <title>My App Challange 3</title>
+
+</head>
+
+<body>
+    <center>
+        <h1>Challange 3: FrondEnd</h1>
+    </center>
+
+    <!-- Table Categorys -->
+    <center>
+        <h2>Categorys</h2>
+        <p>
+        <input type="text" id="catName" placeholder="Name">
+        <input type="text" id="catDescription" placeholder="Description">
+
+        <button onclick="addCategory()" id="btnAdd">Agrgar</button>
+
+        <br />
+        <center>
+            <div id="catList"> </div>
+        </center>
+        </p>
+    </center>
+
+    <!-- Table Audience -->
+
+    <center>
+        <h2>Audiences</h2>
+        <p>
+        <input type="text" id="aName" placeholder="Auditory's name">
+        <input type="text" id="aOwner" placeholder="Owner">
+        <input type="number" id="aCapacity" placeholder="Capacity">
+        <input type="text" id="aDescription" placeholder="Description">
+        <label>Category
+            <select name="Select category" id="aCategory"></select>
+        </label>
+
+        <button onclick="addAudience()" id="btnAdd">Add</button>
+
+        <br />
+        <center>
+            <div id="catList"></div>
+        </center>
+        </p>
+    </center>
+</body>
+</html>
