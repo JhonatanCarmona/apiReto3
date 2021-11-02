@@ -1,10 +1,16 @@
 package co.usa.reto3.reto3.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import co.usa.reto3.reto3.model.Reservation;
+import co.usa.reto3.reto3.model.Reports.CountClients;
+import co.usa.reto3.reto3.model.Reports.CountReservationStatus;
 import co.usa.reto3.reto3.repository.ReservationRepository;
 
 /**
@@ -43,7 +49,7 @@ public class ReservationService {
     public Reservation save(Reservation newReservation) {
         // check if id is null
         if (newReservation.getIdReservation() == null) {
-            newReservation.setStatus("created");
+            // newReservation.setStatus("created");
             return reservationRepository.save(newReservation);
         } else {
             Optional<Reservation> queryReservation = reservationRepository
@@ -100,5 +106,55 @@ public class ReservationService {
             }
         }
         return upReservation;
+    }
+
+    /**
+     * This method return the list of clients and their reservations
+     * 
+     * @return
+     */
+    public List<CountClients> getTopClients() {
+        return reservationRepository.getTopClients();
+    }
+
+    /**
+     * This method return the reservations completed and cancelled
+     * 
+     * @return
+     */
+    public CountReservationStatus getStatusReport() {
+        List<Reservation> completed = reservationRepository.getReservationsByStatus("completed");
+        List<Reservation> cancelled = reservationRepository.getReservationsByStatus("cancelled");
+
+        CountReservationStatus statusReport = new CountReservationStatus(completed.size(), cancelled.size());
+
+        return statusReport;
+    }
+
+    /**
+     * This method return reservations by date
+     * 
+     * @param date1
+     * @param date2
+     * @return
+     */
+    public List<Reservation> getReservationByDate(String date1, String date2) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date iniDate = new Date();
+        Date finalDate = new Date();
+
+        try {
+            iniDate = format.parse(date1);
+            finalDate = format.parse(date2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        if (iniDate.before(finalDate)) {
+            return reservationRepository.getReservationsByDates(iniDate, finalDate);
+        } else {
+            return new ArrayList<>();
+        }
+
     }
 }
