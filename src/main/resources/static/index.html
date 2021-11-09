@@ -1,59 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script
-        src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js">
     </script>
     <script src="js/addScript.js"></script>
     <script src="js/enumarateScript.js"></script>
-    <title>My App Challange 3</title>
+    <title>My App Challenge 3</title>
+    <style>
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+        }
 
+        table {
+            border-style: inset;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
     <center>
-        <h1>Challange 3: FrondEnd</h1>
+        <h1>Challenge 3: FrondEnd</h1>
     </center>
 
-    <!-- Table Categorys -->
+    <!-------------------------- Table Categorys ----------------------------->
     <center>
         <h2>Categorys</h2>
         <p>
-        <input type="text" id="catName" placeholder="Name">
-        <input type="text" id="catDescription" placeholder="Description">
+            <input type="text" id="catName" placeholder="Name" maxlength="45">
+            <input type="text" id="catDescription" placeholder="Description" maxlength="250">
 
-        <button onclick="addCategory()" id="btnAdd">Agrgar</button>
+            <button onclick="addCategory()" id="btnAdd">Add</button>
 
-        <br />
-        <center>
-            <div id="catList"> </div>
-        </center>
+            <br />
+            <center>
+                <div id="catList"> </div>
+            </center>
         </p>
     </center>
 
-    <!-- Table Audience -->
+    <!-------------------------------- Table Audience ------------------------>
 
     <center>
-        <h2>Audiences</h2>
+        <h2>Auditorys</h2>
         <p>
-        <input type="text" id="aName" placeholder="Auditory's name">
-        <input type="text" id="aOwner" placeholder="Owner">
-        <input type="number" id="aCapacity" placeholder="Capacity">
-        <input type="text" id="aDescription" placeholder="Description">
-        <label>Category
-            <select name="Select category" id="aCategory"></select>
-        </label>
+            <input type="text" id="aName" placeholder="Auditory's name" maxlength="45">
+            <input type="text" id="aOwner" placeholder="Owner" maxlength="45">
+            <input type="number" id="aCapacity" placeholder="Capacity">
+            <input type="text" id="aDescription" placeholder="Description" maxlength="250">
+            <label>Category
+                <select name="Select category" id="aCategory"></select>
+            </label>
 
-        <button onclick="addAudience()" id="btnAdd">Add</button>
+            <button onclick="addAudience()" id="btnAdd">Add</button>
 
-        <br />
-        <center>
-            <div id="catList"></div>
-        </center>
+            <br />
+            <center>
+                <div id="audiList"></div>
+            </center>
         </p>
     </center>
+
+    <!-------------------------------- Table Clients ---------------------------->
+
+    <center>
+        <h2>Clients</h2>
+        <p>
+            <input type="text" id="cEmail" placeholder="Email" maxlength="45">
+            <input type="text" id="cPassword" placeholder="Password" maxlength="45">
+            <input type="text" id="cName" placeholder="Name" maxlength="250 ">
+            <input type="number" id="cAge" placeholder="Age">
+
+            <button onclick="addClient()" id="btnAdd">Add</button>
+
+            <br />
+            <center>
+                <div id="clientList"></div>
+            </center>
+        </p>
+    </center>
+
+    <!-------------------------------- Table Message ---------------------------->
+
+    <center>
+        <h2>Messages</h2>
+        <p>
+            <input type="text" id="mMessageText" placeholder="Message" maxlength="250">
+            <label>Auditory
+                <select name="Select auditory" id="mAudience"></select>
+            </label>
+
+            <label>Client
+                <select name="Select client" id="mClient"></select>
+            </label>
+
+            <button onclick="addMessage()" id="btnAdd">Add</button>
+
+            <br />
+            <center>
+                <div id="messageList"></div>
+            </center>
+        </p>
+    </center>
+
+    <!------------------------ Table Reservations ---------------------------->
+
+    <center>
+        <h2>Reservations</h2>
+        <p>
+            <label for="rStartDate">Start date</label>
+            <input type="text" id="rStartDate" placeholder="Current date">
+            <script>
+                $("#rStartDate").prop('disabled', true);
+            </script>
+
+            <label> Devolution date
+                <input type="date" id="rDevolutionDate">
+            </label>
+
+            <label>Auditory
+                <select name="Select auditory" id="rAudience"></select>
+            </label>
+
+            <label>Client
+                <select name="Select client" id="rClient"></select>
+            </label>
+
+            <button onclick="addReservation()" id="btnAdd">Add</button>
+
+            <br />
+            <center>
+                <div id="reservationList"></div>
+            </center>
+        </p>
+    </center>
+
+    <!------------------------ Table Reservations ---------------------------->
+
+    <center>
+        <h2>Scores</h2>
+        <p>
+            <label for="sScore"> Integer (between 0 and 5):</label>
+            <input type="number" id="sScore" placeholder="Score" min="0" max="5">
+            <input type="text" id="sMessageText" placeholder="Message" maxlength="250">
+
+            <label>Reservation
+                <select name="Select reservation" id="sReservation"></select>
+            </label>
+
+
+            <button onclick="addScore()" id="btnAdd">Add</button>
+
+            <br />
+            <center>
+                <div id="scoreList"></div>
+            </center>
+        </p>
+    </center>
+
+    <!------------------------ Table administrators -------------------------->
+
+    <center>
+        <h2>Administrators</h2>
+        <p>
+            <input type="text" id="adName" placeholder="Name" maxlength="250">
+            <input type="text" id="adEmail" placeholder="Email" maxlength="45">
+            <input type="text" id="adPassword" placeholder="Password" maxlength="45">
+
+            <button onclick="addAdmin()" id="btnAdd">Add</button>
+
+            <br />
+            <center>
+                <div id="adminList"> </div>
+            </center>
+        </p>
+    </center>
+
 </body>
+
 </html>

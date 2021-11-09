@@ -49,7 +49,7 @@ public class ReservationService {
     public Reservation save(Reservation newReservation) {
         // check if id is null
         if (newReservation.getIdReservation() == null) {
-            // newReservation.setStatus("created");
+            newReservation.setStatus("created");
             return reservationRepository.save(newReservation);
         } else {
             Optional<Reservation> queryReservation = reservationRepository
@@ -129,6 +129,7 @@ public class ReservationService {
         CountReservationStatus statusReport = new CountReservationStatus(completed.size(), cancelled.size());
 
         return statusReport;
+
     }
 
     /**
